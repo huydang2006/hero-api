@@ -16,7 +16,9 @@ from app import models  # noqa: F401  (import so the tables are registered)
 config = context.config
 
 load_dotenv()
-config.set_main_option("sqlalchemy.url", os.environ["DATABASE_URL"])
+config.set_main_option(
+    "sqlalchemy.url", os.getenv("DATABASE_URL", "sqlite:///./app.db")
+)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
